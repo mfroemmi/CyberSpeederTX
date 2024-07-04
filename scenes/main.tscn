@@ -1,0 +1,76 @@
+[gd_scene load_steps=13 format=3 uid="uid://c3okddvptlm2h"]
+
+[ext_resource type="Texture2D" uid="uid://dvp5qwhjl0wht" path="res://textures/fabric/fabric_pattern_05_ao_1k.png" id="1_50b7a"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_o51ce"]
+[ext_resource type="Texture2D" uid="uid://djdffy3wtjxru" path="res://textures/fabric/fabric_pattern_05_nor_gl_1k.png" id="2_vdar4"]
+[ext_resource type="Texture2D" uid="uid://cuxd3k4a0mqfh" path="res://textures/fabric/fabric_pattern_05_rough_1k.png" id="3_cn3di"]
+[ext_resource type="PackedScene" uid="uid://dl8aow1424vsh" path="res://scenes/racing_car.tscn" id="5_duejf"]
+[ext_resource type="PackedScene" uid="uid://5rhylfidh8vq" path="res://ui/start_screen.tscn" id="5_v82vu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtrwt"]
+albedo_color = Color(0.788235, 0.72549, 0.552941, 1)
+albedo_texture = ExtResource("1_50b7a")
+roughness_texture = ExtResource("3_cn3di")
+normal_enabled = true
+normal_texture = ExtResource("2_vdar4")
+uv1_scale = Vector3(150, 150, 150)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ebj2c"]
+material = SubResource("StandardMaterial3D_xtrwt")
+size = Vector2(300, 300)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_22lfu"]
+data = PackedVector3Array(150, 0, 150, -150, 0, 150, 150, 0, -150, -150, 0, 150, -150, 0, -150, 150, 0, -150)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_j8vgy"]
+
+[sub_resource type="Sky" id="Sky_k31yq"]
+sky_material = SubResource("PhysicalSkyMaterial_j8vgy")
+
+[sub_resource type="Environment" id="Environment_0t2nj"]
+background_mode = 2
+sky = SubResource("Sky_k31yq")
+sdfgi_enabled = true
+glow_enabled = true
+
+[node name="Main" type="Node3D" node_paths=PackedStringArray("start_screen")]
+script = ExtResource("1_o51ce")
+start_screen = NodePath("CanvasLayer/Control/StartScreen")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="World"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ebj2c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_22lfu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.849497, 0.23396, 0.472883, -0.520995, 0.230686, 0.821796, 0.0831795, -0.944482, 0.317859, 0, 35.9036, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_0t2nj")
+
+[node name="Objects" type="Node3D" parent="."]
+
+[node name="RacingCar" parent="Objects" instance=ExtResource("5_duejf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20425, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartScreen" parent="CanvasLayer/Control" instance=ExtResource("5_v82vu")]
+visible = false
+layout_mode = 1
