@@ -38,14 +38,14 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[node name="StartScreen" type="PanelContainer" node_paths=PackedStringArray("level_1_button")]
+[node name="StartScreen" type="PanelContainer" node_paths=PackedStringArray("button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mv5mo")
-level_1_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Button")
+button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Button")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

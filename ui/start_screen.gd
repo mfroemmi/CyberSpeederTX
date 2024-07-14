@@ -1,17 +1,17 @@
 extends PanelContainer
 
-@export var level_1_button: Button
+@export var button: Button
 
 func _ready():
-	GameEvents.pause_game()
-	
-	level_1_button.pressed.connect(_start_level_1)
+	button.pressed.connect(_button_pressed)
 
 
 func _process(delta):
-	pass
+	if GameEvents.gameStatus == GAME_STATUS.SELECT_MODE:
+		visible = true
+	else:
+		visible = false
 
 
-func _start_level_1():
+func _button_pressed():
 	GameEvents.start_game()
-	visible = false

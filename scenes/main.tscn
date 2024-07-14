@@ -1,22 +1,23 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3okddvptlm2h"]
+[gd_scene load_steps=15 format=3 uid="uid://c3okddvptlm2h"]
 
-[ext_resource type="Texture2D" uid="uid://dvp5qwhjl0wht" path="res://textures/fabric/fabric_pattern_05_ao_1k.png" id="1_50b7a"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_o51ce"]
+[ext_resource type="PackedScene" uid="uid://djtgidp0ppo2e" path="res://scenes/arena_time_manager.tscn" id="2_2y8bn"]
 [ext_resource type="Texture2D" uid="uid://djdffy3wtjxru" path="res://textures/fabric/fabric_pattern_05_nor_gl_1k.png" id="2_vdar4"]
 [ext_resource type="Texture2D" uid="uid://cuxd3k4a0mqfh" path="res://textures/fabric/fabric_pattern_05_rough_1k.png" id="3_cn3di"]
+[ext_resource type="Texture2D" uid="uid://cunqhb86ivgb7" path="res://textures/fabric/fabric_pattern_05_col_03_1k.png" id="4_utq4j"]
 [ext_resource type="PackedScene" uid="uid://dl8aow1424vsh" path="res://scenes/racing_car.tscn" id="5_duejf"]
 [ext_resource type="PackedScene" uid="uid://5rhylfidh8vq" path="res://ui/start_screen.tscn" id="5_v82vu"]
+[ext_resource type="PackedScene" uid="uid://qndo7h23mik" path="res://ui/arena_time.tscn" id="7_kbxo4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtrwt"]
-albedo_color = Color(0.788235, 0.72549, 0.552941, 1)
-albedo_texture = ExtResource("1_50b7a")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqbh3"]
+albedo_texture = ExtResource("4_utq4j")
 roughness_texture = ExtResource("3_cn3di")
 normal_enabled = true
 normal_texture = ExtResource("2_vdar4")
 uv1_scale = Vector3(150, 150, 150)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ebj2c"]
-material = SubResource("StandardMaterial3D_xtrwt")
+material = SubResource("StandardMaterial3D_cqbh3")
 size = Vector2(300, 300)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_22lfu"]
@@ -24,18 +25,20 @@ data = PackedVector3Array(150, 0, 150, -150, 0, 150, 150, 0, -150, -150, 0, 150,
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_j8vgy"]
 
-[sub_resource type="Sky" id="Sky_k31yq"]
+[sub_resource type="Sky" id="Sky_flj6w"]
 sky_material = SubResource("PhysicalSkyMaterial_j8vgy")
 
 [sub_resource type="Environment" id="Environment_0t2nj"]
 background_mode = 2
-sky = SubResource("Sky_k31yq")
+sky = SubResource("Sky_flj6w")
 sdfgi_enabled = true
 glow_enabled = true
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("start_screen")]
+[node name="Main" type="Node3D"]
 script = ExtResource("1_o51ce")
-start_screen = NodePath("CanvasLayer/Control/StartScreen")
+
+[node name="ArenaTimeManager" parent="." instance=ExtResource("2_2y8bn")]
+start_screen_scene = ExtResource("5_v82vu")
 
 [node name="World" type="Node3D" parent="."]
 
@@ -58,7 +61,7 @@ environment = SubResource("Environment_0t2nj")
 [node name="Objects" type="Node3D" parent="."]
 
 [node name="RacingCar" parent="Objects" instance=ExtResource("5_duejf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20425, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -70,6 +73,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ArenaTime" parent="CanvasLayer/Control" node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("7_kbxo4")]
+layout_mode = 1
+arena_time_manager = NodePath("../../../ArenaTimeManager")
 
 [node name="StartScreen" parent="CanvasLayer/Control" instance=ExtResource("5_v82vu")]
 visible = false

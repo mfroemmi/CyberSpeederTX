@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://djtgidp0ppo2e"]
+
+[ext_resource type="Script" path="res://scenes/arena_time_manager.gd" id="1_nnwpk"]
+
+[node name="ArenaTimeManager" type="Node" node_paths=PackedStringArray("raceStartTimer", "raceRunningTimer")]
+script = ExtResource("1_nnwpk")
+raceStartTimer = NodePath("RaceStart")
+raceRunningTimer = NodePath("RaceRunning")
+
+[node name="RaceStart" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="RaceRunning" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true

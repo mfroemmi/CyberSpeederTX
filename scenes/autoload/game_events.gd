@@ -1,12 +1,14 @@
 extends Node
 
-var isRunning = false
+var gameStatus = GAME_STATUS.SELECT_MODE
+
 
 func start_game():
-	isRunning = true
+	gameStatus = GAME_STATUS.RACE_START
 	
-func pause_game():
-	isRunning = false
 	
-func is_game_running():
-	return isRunning
+func is_race_running():
+	if gameStatus == GAME_STATUS.RACE_RUNNING:
+		return true
+	else:
+		return false

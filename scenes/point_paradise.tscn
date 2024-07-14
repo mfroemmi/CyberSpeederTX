@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://wr4bqpsab4rl"]
+
+[ext_resource type="PackedScene" uid="uid://dl8aow1424vsh" path="res://scenes/racing_car.tscn" id="1_78mff"]
+[ext_resource type="Material" uid="uid://cthjws361xx4y" path="res://materials/point_paradise.tres" id="1_mqmui"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1uomw"]
+size = Vector2(50, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_d2fx4"]
+data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_yq6cy"]
+
+[sub_resource type="Sky" id="Sky_k31yq"]
+sky_material = SubResource("PhysicalSkyMaterial_yq6cy")
+
+[sub_resource type="Environment" id="Environment_sn5vv"]
+background_mode = 2
+sky = SubResource("Sky_k31yq")
+sdfgi_enabled = true
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ryk8x"]
+size = Vector3(60, 1, 60)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n3tia"]
+size = Vector3(60, 1, 60)
+
+[node name="PointParadise" type="Node3D"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="GroundFail" type="MeshInstance3D" parent="World"]
+visible = false
+mesh = SubResource("PlaneMesh_1uomw")
+surface_material_override/0 = ExtResource("1_mqmui")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/GroundFail"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/GroundFail/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_d2fx4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.849497, 0.23396, 0.472883, -0.520995, 0.230686, 0.821796, 0.0831795, -0.944482, 0.317859, 0, 35.9036, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_sn5vv")
+
+[node name="Ground" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground"]
+shape = SubResource("BoxShape3D_ryk8x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Ground"]
+mesh = SubResource("BoxMesh_n3tia")
+surface_material_override/0 = ExtResource("1_mqmui")
+
+[node name="Objects" type="Node3D" parent="."]
+
+[node name="RacingCar" parent="Objects" instance=ExtResource("1_78mff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.90948, 0)
