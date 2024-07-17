@@ -3,7 +3,7 @@ extends PanelContainer
 @export var arena_time_manager: Node
 @onready var label = $MarginContainer/Label
 
-func _process(delta):
+func _process(_delta):
 	if arena_time_manager == null:
 		return
 	

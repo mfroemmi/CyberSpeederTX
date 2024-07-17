@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://3f05fup6c1ej"]
+
+[ext_resource type="Script" path="res://ui/laps_count.gd" id="1_7c5tp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub63g"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mjihn"]
+font_size = 60
+
+[node name="LapsCount" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ub63g")
+script = ExtResource("1_7c5tp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "1 / 5"
+label_settings = SubResource("LabelSettings_mjihn")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://3dvonkd3ntp"]
+
+[ext_resource type="Material" uid="uid://cthjws361xx4y" path="res://materials/point_paradise.tres" id="1_5qimp"]
+
+[sub_resource type="Curve3D" id="Curve3D_wjho2"]
+bake_interval = 3.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.32651, 0, -1.24184, 0, 0, 0, 0, 0, 0, -0.274532, 0, -1.48285, 0, 0, 0, 0, 0, 0, 2.06366, 0, -1.7219, 0, 0, 0, 0, 0, 0, 3.75067, 0, -1.1702, 0, 0, 0, 0, 0, 0, 5.26993, 0, -0.0307586, 0, 0, 0, 0, 0, 0, 7.34216, 0, 0.370938, 0, 0, 0, 0, 0, 0, 8.0747, 0, 1.70762, 0, 0, 0, 0, 0, 0, 7.76793, 0, 3.16844, 0, 0, 0, 0, 0, 0, 5.0362, 0, 3.67973, 0, 0, 0, 0, 0, 0, 3.28321, 0, 2.55489, 0, 0, 0, 0, 0, 0, 1.67631, 0, 2.08743, 0, 0, 0, 0, 0, 0, 0.0547973, 0, 2.26273, 0, 0, 0, 0, 0, 0, -1.87348, 0, 2.81784, 0, 0, 0, 0, 0, 0, -3.8602, 0, 1.92674, 0, 0, 0, 0, 0, 0, -4.31306, 0, 0.144539, 0, 0, 0, 0, 0, 0, -3.33441, 0, -0.725749, 0, 0, 0, 0, 0, 0, -2.31836, 0, -1.0483, 0, 0, 0, 0, 0, 0, -1.32651, 0, -1.24184),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 18
+
+[node name="RaceTrack" type="Node3D"]
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+curve = SubResource("Curve3D_wjho2")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+use_collision = true
+polygon = PackedVector2Array(-0.592439, -0.0571767, -0.54761, 0.0040322, 0.39631, 0.00207926, 0.426952, -0.0587753)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = true
+material = ExtResource("1_5qimp")

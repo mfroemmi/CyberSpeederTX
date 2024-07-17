@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c3okddvptlm2h"]
+[gd_scene load_steps=20 format=3 uid="uid://c3okddvptlm2h"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_o51ce"]
 [ext_resource type="PackedScene" uid="uid://djtgidp0ppo2e" path="res://scenes/arena_time_manager.tscn" id="2_2y8bn"]
@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://cunqhb86ivgb7" path="res://textures/fabric/fabric_pattern_05_col_03_1k.png" id="4_utq4j"]
 [ext_resource type="PackedScene" uid="uid://dl8aow1424vsh" path="res://scenes/racing_car.tscn" id="5_duejf"]
 [ext_resource type="PackedScene" uid="uid://5rhylfidh8vq" path="res://ui/start_screen.tscn" id="5_v82vu"]
+[ext_resource type="PackedScene" uid="uid://3dvonkd3ntp" path="res://scenes/race_track.tscn" id="6_43deg"]
 [ext_resource type="PackedScene" uid="uid://qndo7h23mik" path="res://ui/arena_time.tscn" id="7_kbxo4"]
+[ext_resource type="PackedScene" uid="uid://cbk2sbiyey8gr" path="res://scenes/goal_finish_line.tscn" id="8_ifb34"]
+[ext_resource type="PackedScene" uid="uid://3f05fup6c1ej" path="res://ui/laps_count.tscn" id="9_axjww"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqbh3"]
 albedo_texture = ExtResource("4_utq4j")
@@ -20,7 +23,7 @@ uv1_scale = Vector3(150, 150, 150)
 material = SubResource("StandardMaterial3D_cqbh3")
 size = Vector2(300, 300)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_22lfu"]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ihlwq"]
 data = PackedVector3Array(150, 0, 150, -150, 0, 150, 150, 0, -150, -150, 0, 150, -150, 0, -150, 150, 0, -150)
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_j8vgy"]
@@ -34,22 +37,26 @@ sky = SubResource("Sky_flj6w")
 sdfgi_enabled = true
 glow_enabled = true
 
+[sub_resource type="BoxMesh" id="BoxMesh_vcp7l"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_40jd3"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_o51ce")
 
 [node name="ArenaTimeManager" parent="." instance=ExtResource("2_2y8bn")]
-start_screen_scene = ExtResource("5_v82vu")
 
 [node name="World" type="Node3D" parent="."]
 
 [node name="Ground" type="MeshInstance3D" parent="World"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -14.5201, 0)
 mesh = SubResource("PlaneMesh_ebj2c")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Ground"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_22lfu")
+shape = SubResource("ConcavePolygonShape3D_ihlwq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
 transform = Transform3D(0.849497, 0.23396, 0.472883, -0.520995, 0.230686, 0.821796, 0.0831795, -0.944482, 0.317859, 0, 35.9036, 0)
@@ -61,7 +68,25 @@ environment = SubResource("Environment_0t2nj")
 [node name="Objects" type="Node3D" parent="."]
 
 [node name="RacingCar" parent="Objects" instance=ExtResource("5_duejf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+transform = Transform3D(0.0969401, 0, -0.99529, 0, 1, 0, 0.99529, 0, 0.0969401, 0, 2.11347, -25.4226)
+
+[node name="GoalFinishLine" parent="Objects" instance=ExtResource("8_ifb34")]
+transform = Transform3D(9.93011, 0, 1.41627, 0, 10, 0, -1.18023, 0, 11.9161, 0, 0, -25.4665)
+
+[node name="Ramp" type="MeshInstance3D" parent="Objects"]
+transform = Transform3D(15.7101, 0.144543, -6.55081, -9.63153, 0.508374, 0, 16.893, 0.155427, 6.09208, 35.4897, 4.34917, -37.6157)
+mesh = SubResource("BoxMesh_vcp7l")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Objects/Ramp"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Ramp/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_40jd3")
+
+[node name="RaceTrack" parent="Objects" instance=ExtResource("6_43deg")]
+transform = Transform3D(20, 0, 0, 0, 10, 0, 0, 0, 20, 0, 0, 5.97762)
+
+[node name="RaceTrack2" parent="Objects" instance=ExtResource("6_43deg")]
+transform = Transform3D(-16.392, 0, 11.4587, 0, 10, 0, -11.4587, 0, -16.392, -43.493, 7.78931, -98.564)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -79,5 +104,9 @@ layout_mode = 1
 arena_time_manager = NodePath("../../../ArenaTimeManager")
 
 [node name="StartScreen" parent="CanvasLayer/Control" instance=ExtResource("5_v82vu")]
+visible = false
+layout_mode = 1
+
+[node name="LapsCount" parent="CanvasLayer/Control" instance=ExtResource("9_axjww")]
 visible = false
 layout_mode = 1

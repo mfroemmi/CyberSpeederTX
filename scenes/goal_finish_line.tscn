@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbk2sbiyey8gr"]
+
+[ext_resource type="Script" path="res://scenes/goal_finish_line.gd" id="1_l64bk"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i0kjf"]
+top_radius = 0.02
+bottom_radius = 0.02
+height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_v2jr4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sisk7"]
+size = Vector3(0.2, 0.2, 1.39714)
+
+[node name="GoalFinishLine" type="Node3D"]
+script = ExtResource("1_l64bk")
+
+[node name="Pole" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.7)
+mesh = SubResource("CylinderMesh_i0kjf")
+
+[node name="Pole2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.7)
+mesh = SubResource("CylinderMesh_i0kjf")
+
+[node name="Banner" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0399867, 0, 0, 0, 0.161417, 0, 0, 0, 1.47079, 0, 0.954593, 0)
+mesh = SubResource("BoxMesh_v2jr4")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.1, 0)
+shape = SubResource("BoxShape3D_sisk7")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

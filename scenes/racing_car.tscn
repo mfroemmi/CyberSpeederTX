@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl8aow1424vsh"]
+[gd_scene load_steps=6 format=3 uid="uid://dl8aow1424vsh"]
 
 [ext_resource type="PackedScene" uid="uid://buxlo4x4kon50" path="res://assets/arcade_lowpoly_car.glb" id="1_cxyd5"]
 [ext_resource type="Script" path="res://scenes/racing_car.gd" id="1_phgv3"]
@@ -9,20 +9,30 @@ bounce = 0.1
 [sub_resource type="SphereShape3D" id="SphereShape3D_4i2hr"]
 radius = 1.0
 
+[sub_resource type="SphereMesh" id="SphereMesh_qkt1o"]
+radius = 1.0
+height = 2.0
+
 [node name="RacingCar" type="Node3D" node_paths=PackedStringArray("ball", "car_mesh", "spring_arm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_phgv3")
 ball = NodePath("Ball")
 car_mesh = NodePath("arcade_lowpoly_car/Car Body")
-spring_arm = NodePath("arcade_lowpoly_car/SpringArmPivot")
+spring_arm = NodePath("arcade_lowpoly_car/SpringArmPivot/SpringArm3D")
 
 [node name="Ball" type="RigidBody3D" parent="."]
+collision_layer = 3
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_gtqio")
 gravity_scale = 10.0
 angular_damp = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
 shape = SubResource("SphereShape3D_4i2hr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
+visible = false
+mesh = SubResource("SphereMesh_qkt1o")
 
 [node name="arcade_lowpoly_car" parent="." instance=ExtResource("1_cxyd5")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -1, 0)
@@ -31,7 +41,8 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.10441e-09, 1.98682e-07, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="arcade_lowpoly_car/SpringArmPivot"]
-transform = Transform3D(0.5, -0.612372, 0.612372, 0, 0.707107, 0.707107, -0.866025, -0.353553, 0.353553, 0, 1, 0)
+transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.74227e-08, 0.707107, -0.707107, 0, 1, 0)
+collision_mask = 0
 spring_length = 50.0
 
 [node name="Camera3D" type="Camera3D" parent="arcade_lowpoly_car/SpringArmPivot/SpringArm3D"]

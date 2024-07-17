@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" path="res://scenes/arena_time_manager.gd" id="1_nnwpk"]
 
-[node name="ArenaTimeManager" type="Node" node_paths=PackedStringArray("raceStartTimer", "raceRunningTimer")]
+[node name="ArenaTimeManager" type="Node" node_paths=PackedStringArray("raceStartTimer", "miniGameRunningTimer")]
 script = ExtResource("1_nnwpk")
 raceStartTimer = NodePath("RaceStart")
-raceRunningTimer = NodePath("RaceRunning")
+miniGameRunningTimer = NodePath("MiniGameRunning")
 
 [node name="RaceStart" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
-[node name="RaceRunning" type="Timer" parent="."]
+[node name="MiniGameRunning" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true

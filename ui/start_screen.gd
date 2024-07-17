@@ -6,7 +6,7 @@ func _ready():
 	button.pressed.connect(_button_pressed)
 
 
-func _process(delta):
+func _process(_delta):
 	if GameEvents.gameStatus == GAME_STATUS.SELECT_MODE:
 		visible = true
 	else:
