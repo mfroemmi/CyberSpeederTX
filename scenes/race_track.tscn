@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://3dvonkd3ntp"]
+[gd_scene load_steps=4 format=3 uid="uid://3dvonkd3ntp"]
 
-[ext_resource type="Material" uid="uid://cthjws361xx4y" path="res://materials/point_paradise.tres" id="1_5qimp"]
+[ext_resource type="Material" uid="uid://csmlry4lui7vj" path="res://materials/rubber.tres" id="1_ds115"]
+[ext_resource type="Material" uid="uid://bfdtgfn4vh4e2" path="res://materials/race_track_border.tres" id="2_2mpfn"]
 
 [sub_resource type="Curve3D" id="Curve3D_wjho2"]
 bake_interval = 3.0
@@ -29,4 +30,36 @@ path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = true
-material = ExtResource("1_5qimp")
+material = ExtResource("1_ds115")
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="CSGPolygon3D"]
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="."]
+use_collision = true
+polygon = PackedVector2Array(0.376444, -0.00146252, 0.401915, 0.01894, 0.450719, 0.0185413, 0.455082, -0.00535619)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = true
+material = ExtResource("2_2mpfn")
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="."]
+use_collision = true
+polygon = PackedVector2Array(-0.565743, -0.000792176, -0.560074, 0.0146234, -0.513269, 0.0154441, -0.502888, -0.000988036)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = true
+material = ExtResource("2_2mpfn")

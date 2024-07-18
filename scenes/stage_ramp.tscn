@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0ifsxfic40ts"]
+
+[ext_resource type="Script" path="res://scenes/stage_ramp.gd" id="1_xmfuh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ity1d"]
+transparency = 1
+albedo_color = Color(0.568627, 0, 0.588235, 0.960784)
+
+[sub_resource type="BoxMesh" id="BoxMesh_61g04"]
+material = SubResource("StandardMaterial3D_ity1d")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_68b11"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="StageRamp" type="Node3D" node_paths=PackedStringArray("ramp1", "ramp2", "mesh_instance1")]
+script = ExtResource("1_xmfuh")
+ramp1 = NodePath("Ramp/StaticBody3D/CollisionShape3D")
+ramp2 = NodePath("Ramp2/StaticBody3D/CollisionShape3D")
+mesh_instance1 = NodePath("Ramp")
+
+[node name="Ramp" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.00761e-06, -3.26815e-07, -8.94576, -9.63153, 0.508374, -5.58764e-06, 23.069, 0.212251, -3.91031e-07, 0, 4.349, -9.326)
+mesh = SubResource("BoxMesh_61g04")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ramp"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_68b11")
+
+[node name="Ramp2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-6.56553e-07, 0, -8.94576, 0, 0.550903, 0, 15.0202, 0, -3.91031e-07, 0, -0.445604, 9.58326)
+mesh = SubResource("BoxMesh_61g04")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ramp2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_68b11")

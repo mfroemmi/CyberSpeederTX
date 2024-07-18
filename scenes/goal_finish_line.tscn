@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbk2sbiyey8gr"]
+[gd_scene load_steps=6 format=3 uid="uid://cbk2sbiyey8gr"]
 
 [ext_resource type="Script" path="res://scenes/goal_finish_line.gd" id="1_l64bk"]
+[ext_resource type="Material" uid="uid://cthjws361xx4y" path="res://materials/point_paradise.tres" id="2_6k717"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_i0kjf"]
 top_radius = 0.02
@@ -8,6 +9,7 @@ bottom_radius = 0.02
 height = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_v2jr4"]
+material = ExtResource("2_6k717")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sisk7"]
 size = Vector3(0.2, 0.2, 1.39714)

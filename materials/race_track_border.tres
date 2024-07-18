@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bfdtgfn4vh4e2"]
+
+[resource]
+diffuse_mode = 3
+albedo_color = Color(0.721569, 0.196078, 0.435294, 0.901961)
+metallic = 0.3
+roughness = 0.02
+emission_energy_multiplier = 9.56
+rim_enabled = true

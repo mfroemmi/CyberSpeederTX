@@ -1,6 +1,7 @@
 extends Node
 
 var gameStatus = GAME_STATUS.SELECT_MODE
+var stageStatus = STAGE_STATUS.NONE
 var roundCounter = "0"
 
 
@@ -26,14 +27,14 @@ func increase_round():
 			roundCounter = "1"
 			return
 		"1":
-			get_tree().change_scene_to_file("res://scenes/point_paradise.tscn")
-			#roundCounter = "2"
+			roundCounter = "2"
 			return
 		"2":
 			roundCounter = "3"
 			return
 		"3":
 			roundCounter = "4"
+			stageStatus = STAGE_STATUS.STAGE_ONE_COMPLETE
 			return
 		"4":
 			roundCounter = "5"

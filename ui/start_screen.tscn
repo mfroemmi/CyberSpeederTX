@@ -71,7 +71,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Micro Party Racer"
+text = "Cyber Speed TX Racer"
 label_settings = SubResource("LabelSettings_57spi")
 horizontal_alignment = 1
 
@@ -105,8 +105,8 @@ offset_bottom = 129.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "LEVEL 1
-Speedway 
-Sprint"
+Point 
+Paradise"
 label_settings = SubResource("LabelSettings_ci66r")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -143,8 +143,8 @@ offset_bottom = 129.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "LEVEL 2
-Point
-Paradise"
+Chaotic
+Catapult"
 label_settings = SubResource("LabelSettings_ci66r")
 horizontal_alignment = 1
 vertical_alignment = 1
