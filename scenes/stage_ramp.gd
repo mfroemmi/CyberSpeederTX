@@ -1,5 +1,7 @@
 extends Node3D
 
+@export var stage_number: int
+
 @export var ramp1: CollisionShape3D
 @export var ramp2: CollisionShape3D 
 
@@ -19,7 +21,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if GameEvents.stageStatus == STAGE_STATUS.STAGE_ONE_COMPLETE:
+	var stage_status 
+	if stage_number == 1:
+		stage_status = STAGE_STATUS.STAGE_ONE_COMPLETE
+	else:
+		stage_status = STAGE_STATUS.STAGE_TWO_COMPLETE
+	
+	if GameEvents.stageStatus == stage_status:
 		ramp1.disabled = false
 		ramp2.disabled = false
 
@@ -27,4 +35,4 @@ func _process(delta):
 		if material and material is StandardMaterial3D:
 			material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 			material.albedo_color.a = transparency_full
-		
+	

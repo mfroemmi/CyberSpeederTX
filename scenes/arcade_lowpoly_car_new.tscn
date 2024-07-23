@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqbf2an1jaf2s"]
+
+[ext_resource type="PackedScene" uid="uid://buxlo4x4kon50" path="res://assets/arcade_lowpoly_car.glb" id="1_yr7qw"]
+
+[node name="arcade_lowpoly_car" instance=ExtResource("1_yr7qw")]

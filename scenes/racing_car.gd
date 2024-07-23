@@ -23,7 +23,8 @@ var rotate_input = 0
 
 
 func _ready():
-	pass
+	print(car_mesh.global_position)
+	print(car_mesh.rotation_degrees)
 
 	
 func _physics_process(_delta):

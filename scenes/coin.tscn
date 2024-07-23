@@ -11,8 +11,8 @@ top_radius = 1.0
 bottom_radius = 1.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fadco"]
-height = 0.2
-radius = 1.0
+height = 0.15544
+radius = 1.04953
 
 [node name="Coin" type="Node3D" node_paths=PackedStringArray("visual")]
 script = ExtResource("1_7tgs6")

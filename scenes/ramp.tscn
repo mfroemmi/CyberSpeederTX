@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4wtmqoo7iov8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ity1d"]
+transparency = 1
+albedo_color = Color(0.568627, 0, 0.588235, 0.960784)
+
+[sub_resource type="BoxMesh" id="BoxMesh_61g04"]
+material = SubResource("StandardMaterial3D_ity1d")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_68b11"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="Ramp" type="Node3D"]
+
+[node name="RampMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.96901e-06, -2.44018e-07, -4.42638, -3.78715, 0.37958, -2.76477e-06, 9.0708, 0.158478, -1.93483e-07, 0, 1.32423, 0)
+mesh = SubResource("BoxMesh_61g04")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RampMesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RampMesh/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_68b11")

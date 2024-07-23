@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://crf4gtkplbeu6"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u57i5"]
+initial_velocity_max = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qdrbc"]
+albedo_color = Color(1, 0.623529, 0.737255, 1)
+emission_enabled = true
+emission = Color(0.694118, 0.596078, 0.121569, 1)
+emission_energy_multiplier = 1.66
+grow = true
+grow_amount = 0.226
+
+[sub_resource type="SphereMesh" id="SphereMesh_kmlgv"]
+material = SubResource("StandardMaterial3D_qdrbc")
+radius = 0.05
+height = 0.1
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+transform = Transform3D(-0.0745436, 0.997218, 0, -0.997218, -0.0745436, 0, 0, 0, 1, 2.9928, -1.84149, 0)
+amount = 70
+lifetime = 0.7
+randomness = 0.1
+process_material = SubResource("ParticleProcessMaterial_u57i5")
+draw_pass_1 = SubResource("SphereMesh_kmlgv")

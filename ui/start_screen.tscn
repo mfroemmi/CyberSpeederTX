@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://5rhylfidh8vq"]
+[gd_scene load_steps=9 format=3 uid="uid://5rhylfidh8vq"]
 
 [ext_resource type="Script" path="res://ui/start_screen.gd" id="1_mv5mo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkiw1"]
-bg_color = Color(1, 0.376471, 0.341176, 1)
+bg_color = Color(0, 0, 0, 0.607843)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -11,6 +11,15 @@ corner_radius_bottom_left = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_57spi"]
 font_size = 70
+font_color = Color(0, 0.792157, 0.8, 1)
+outline_size = 20
+outline_color = Color(0.266667, 0.160784, 0.376471, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6m8jd"]
+font_size = 100
+font_color = Color(0, 0.792157, 0.8, 1)
+outline_size = 35
+outline_color = Color(0.266667, 0.160784, 0.376471, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iljb8"]
 bg_color = Color(0.635294, 0.545098, 0.819608, 1)
@@ -71,8 +80,15 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Cyber Speed TX Racer"
+text = "CYBER SPEEDER TOURNAMENT"
 label_settings = SubResource("LabelSettings_57spi")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "XTREME"
+label_settings = SubResource("LabelSettings_6m8jd")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
